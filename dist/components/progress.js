@@ -20,7 +20,7 @@ window = (typeof window != 'undefined' && window.Math == Math)
   ? window
   : (typeof self != 'undefined' && self.Math == Math)
     ? self
-    : Function('return this')()
+    : Function('return this.window')()
 ;
 
 $.fn.progress = function(parameters) {
@@ -607,6 +607,9 @@ $.fn.progress = function(parameters) {
             }
             else {
               module.remove.active();
+              module.remove.warning();
+              module.remove.error();
+              module.remove.success();
               module.set.label(settings.text.active);
             }
           },

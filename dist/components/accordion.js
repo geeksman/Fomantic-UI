@@ -20,7 +20,7 @@ window = (typeof window != 'undefined' && window.Math == Math)
   ? window
   : (typeof self != 'undefined' && self.Math == Math)
     ? self
-    : Function('return this')()
+    : Function('return this.window')()
 ;
 
 $.fn.accordion = function(parameters) {
@@ -117,8 +117,10 @@ $.fn.accordion = function(parameters) {
         },
 
         event: {
-          click: function() {
-            module.toggle.call(this);
+          click: function(event) {
+            if($(event.target).closest(selector.ignore).length === 0) {
+              module.toggle.call(this);
+            }
           }
         },
 
@@ -602,6 +604,7 @@ $.fn.accordion.settings = {
     accordion : '.accordion',
     title     : '.title',
     trigger   : '.title',
+    ignore    : '.ui.dropdown',
     content   : '.content'
   }
 

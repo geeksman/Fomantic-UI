@@ -75,7 +75,7 @@
 }
 
 /* Clearing */
-.ui.statistics:after {
+.ui.statistics::after {
   display: block;
   content: ' ';
   height: 0;
@@ -617,11 +617,5 @@
 
 /*******************************
          Theme Overrides
-*******************************/
-
-
-
-/*******************************
-    User Variable Overrides
 *******************************/
 
