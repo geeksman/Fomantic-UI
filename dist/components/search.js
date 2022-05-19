@@ -20,7 +20,7 @@ window = (typeof window != 'undefined' && window.Math == Math)
   ? window
   : (typeof self != 'undefined' && self.Math == Math)
     ? self
-    : Function('return this')()
+    : Function('return this.window')()
 ;
 
 $.fn.search = function(parameters) {
@@ -262,7 +262,7 @@ $.fn.search = function(parameters) {
 
           resultsScrollTop = $results.scrollTop();
           resultsHeight = $results.height();
-            
+
           if (elTop < 0) {
             $results.scrollTop(resultsScrollTop + elTop);
           }
@@ -403,7 +403,7 @@ $.fn.search = function(parameters) {
             return $results.hasClass(className.animating);
           },
           chrome: function() {
-            return !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+            return !!window.chrome && !window.StyleMedia;
           },
           hidden: function() {
             return $results.hasClass(className.hidden);
@@ -662,10 +662,10 @@ $.fn.search = function(parameters) {
                 ;
                 if(fieldExists) {
                   var text;
-                  if (typeof content[field] === 'string'){  
+                  if (typeof content[field] === 'string'){
                       text = module.remove.diacritics(content[field]);
                   } else {
-                      text = content[field].toString(); 
+                      text = content[field].toString();
                   }
                   if( text.search(matchRegExp) !== -1) {
                     // content starts with value (first in results)

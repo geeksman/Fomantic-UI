@@ -20,7 +20,7 @@ window = (typeof window != 'undefined' && window.Math == Math)
   ? window
   : (typeof self != 'undefined' && self.Math == Math)
     ? self
-    : Function('return this')()
+    : Function('return this.window')()
 ;
 
 $.fn.shape = function(parameters) {
@@ -126,7 +126,7 @@ $.fn.shape = function(parameters) {
             module.reset();
             module.set.active();
           };
-          settings.beforeChange.call($nextSide[0]);
+          settings.onBeforeChange.call($nextSide[0]);
           if(module.get.transitionEvent()) {
             module.verbose('Starting CSS animation');
             $module
@@ -813,7 +813,7 @@ $.fn.shape.settings = {
   height: 'initial',
 
   // callback occurs on side change
-  beforeChange : function() {},
+  onBeforeChange : function() {},
   onChange     : function() {},
 
   // allow animation to same side

@@ -20,7 +20,7 @@ $.isWindow = $.isWindow || function(obj) {
     ? window
     : (typeof self != 'undefined' && self.Math == Math)
       ? self
-      : Function('return this')()
+      : Function('return this.window')()
 ;
 
 $.api = $.fn.api = function(parameters) {
